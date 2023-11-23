@@ -8,7 +8,7 @@ const port = 4000;
 
 const zoho_headers = {
   Authorization:
-    "Bearer 1000.047c1e47e89e24c1d44470fd94debd75.9b535925a303787bbafff2b8c2dd280e",
+    "Bearer 1000.1eac4f69431a27fc06e2c14f289354b5.d151f04c252a01e6d9b058965d85cfce",
   "Content-Type": "application/json",
 };
 
@@ -179,20 +179,21 @@ app.post("/updateContact", async (req, res) => {
 app.post("/deleteContact", async (req, res) => {
   try {
     const { contact_id, data_store } = req.body;
-    const result = await (await fetch(
-      "https://contacts.zoho.com/api/v1/accounts/self/contacts/" + contact_id
-    ),
-    { headers: zoho_headers, method: "DELETE" }).json();
-
-    console.log("delete: ", result);
     if (!contact_id || !data_store) {
-      return res.status(200).json(result);
+      return res.status(400).json();
     }
-
-    if (data_store === "CRM") {
-      return res
-        .status(400)
-        .json({ message: "CRM data_store is not supported yet" });
+    else if (data_store === "CRM") {
+      const result = await (await fetch(
+        "https://contacts.zoho.com/api/v1/accounts/self/contacts/" + contact_id
+      ),
+      { headers: zoho_headers, method: "DELETE" }).json();
+  
+      console.log("delete: ", result);
+      return res.status(200).json(result);
+  
+      // return res
+      //   .status(400)
+      //   .json({ message: "CRM data_store is not supported yet" });
     } else if (data_store === "DATABASE") {
       db.query(
         `DELETE FROM contacts WHERE id = ${contact_id};`,
