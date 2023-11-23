@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 zoho follows OAuthAuthentication
 
 clientId: 1000.APTR862EYV2U4XLL8NH8R3RHWU2QUZ
@@ -110,3 +111,5 @@ https://contacts.zoho.com/api/v1/accounts/self/contacts/4685191000000030004
   "resource_name": "contacts",
   "message": "Contact deleted successfully"
 }
+=======
+>>>>>>> parent of bb92fdc (done)
