@@ -1,0 +1,111 @@
+zoho follows OAuthAuthentication
+
+clientId: 1000.APTR862EYV2U4XLL8NH8R3RHWU2QUZ
+clientSecret: f104a63f3e748e465c8e3f348938f2664a85164a4b
+
+1. create account in zoho
+2. add a project/application in zoho - https://accounts.zoho.com/developerconsole
+    a. add appName
+    b. clientID and ClientSecret
+
+- creating authorization code
+https://accounts.zoho.com/oauth/v2/auth?response_type=code&client_id=1000.JUA4NA8YOH1RY8UB4N225MHGXLUCQGscope=Test.profile.Write
+
+
+- creating access token
+
+curl --location --request POST 'https://accounts.zoho.com/oauth/v2/token?client_id=1000.APTR862EYV2U4XLL8NH8R3RHWU2QUZ&grant_type=authorization_code&client_secret=f104a63f3e748e465c8e3f348938f2664a85164a4b&redirect_uri=https://www.zylker.com/oauthredirect&code=1000.5c15302f63a2e64cf142da2946095b16.1bc50b43abc134a83cb52c623d2270eb' \
+--header 'Cookie: JSESSIONID=4A0BD2615C1635F0267C5B9072BFFDA8; _zcsr_tmp=5ae9ced8-accf-4437-ac8c-6dc3d7dc8c73; b266a5bf57=a7f15cb1555106de5ac96d088b72e7c8; iamcsr=5ae9ced8-accf-4437-ac8c-6dc3d7dc8c73' \
+--data-raw ''
+
+
+- refresh token
+https://accounts.zoho.com/oauth/v2/token?
+client_id=1000.GMB0YULZHJK411248S8I5GZ4CHUEX0&
+grant_type=refresh_token&
+client_secret=122c324d3496d5d777ceeebc129470715fbb856b7&
+refresh_token=1000.18e983526f0ca8575ea9c53b0cd5bb58.1bd83a6f2e22c3a7e1309d96ae439cc1
+
+{
+    "access_token":"1000.2deaf8d0c268e3c85daa2a013a843b10.703adef2bb337b 8ca36cfc5d7b83cf24",
+    "api_domain":"https://api.zoho.com",
+    "token_type":"Bearer",
+    "expires_in":3600
+}
+
+APIS - https://www.zoho.com/contacts/api/overview.html
+
+
+1. Add ContactAPI:
+  curl --location --request POST 'https://contacts.zoho.com/api/v1/accounts/self/contacts?source=Self%20Client' \
+--header 'Authorization: Bearer 1000.047c1e47e89e24c1d44470fd94debd75.9b535925a303787bbafff2b8c2dd280e' \
+--header 'Content-Type: application/json' \
+--header 'Cookie: 040db64b01=b7649e3eb880525bab018b15f127cfc0; _zcsr_tmp=f043db66-7749-4e6a-96e7-e368d84b3ae8; concsr=f043db66-7749-4e6a-96e7-e368d84b3ae8; fee601a94d=2276ffc910240c0fe1a0f51635f4d5a7' \
+--data-raw '{
+    "contacts": [
+        {
+            "emails": [
+                {
+                    "is_primary": true,
+                    "email_id": "a234user@yahoo.com"
+                }
+            ],
+            "phones": [
+                {
+                    "number": "123123123",
+                    "type": "mobile"
+                }
+            ],
+            "first_name": "Jad G",
+            "last_name": "last"
+        }
+    ]
+}'
+
+
+2. get contact
+  https://contacts.zoho.com/api/v1/accounts/self/contacts/4685191000000029004
+  {
+  "status_code": 200,
+  "resource_name": "contacts",
+  "contacts": {
+    "created_time": 1532600991317,
+    "updated_time": -1,
+    "contact_type": "1",
+    "zid": 11123456,
+    "last_name": "fourth",
+    "company": "prog",
+    "is_writable": true,
+    "contact_zuid": "-1",
+    "photo_url": "https://contacts.zoho.com/images/user.gif",
+    "contact_id": "4685191000000029004",
+    "first_name": "athira",
+    "status": -10
+  }
+}
+
+3. update contact
+https://contacts.zoho.com/api/v1/accounts/self/contacts/4685191000000030004
+{
+ "contacts":
+  {
+   "emails":[ {"is_primary":true,"email_id":"user@yahoo.com"},
+        {"email_id":"user@mail.com"},
+        {"email_id":"newuser@mail.com"}
+   ],
+   "nick_name":"new user",
+   "first_name":"J K G",
+    "job_title":"new job",
+   "company":"new company",
+   "last_name":"latest",
+   "notes":"new notes"
+  }
+}
+
+4. delete contact
+https://contacts.zoho.com/api/v1/accounts/self/contacts/4685191000000030004
+{
+  "status_code": 204,
+  "resource_name": "contacts",
+  "message": "Contact deleted successfully"
+}
