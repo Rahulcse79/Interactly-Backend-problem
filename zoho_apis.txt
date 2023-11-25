@@ -1,8 +1,16 @@
 <<<<<<< HEAD
 zoho follows OAuthAuthentication
 
-clientId: 1000.APTR862EYV2U4XLL8NH8R3RHWU2QUZ
-clientSecret: f104a63f3e748e465c8e3f348938f2664a85164a4b
+Clint Id: 
+Client Secret: 
+
+zohocontacts.contactapi.ALL
+
+ "access_token": "1000.76269cc2bc36c71d57c3cd0adbe0a9a3.7ff3a069c482a5a5fdb717974cd6feaf",
+    "refresh_token": "1000.3835cca16ef59055e255325ea66d07a7.113cf9a6d3c251157e59b1e035a49ad2",
+    "api_domain": "https://www.zohoapis.com",
+    "token_type": "Bearer",
+    "expires_in": 3600
 
 1. create account in zoho
 2. add a project/application in zoho - https://accounts.zoho.com/developerconsole
@@ -13,6 +21,7 @@ clientSecret: f104a63f3e748e465c8e3f348938f2664a85164a4b
 https://accounts.zoho.com/oauth/v2/auth?response_type=code&client_id=1000.JUA4NA8YOH1RY8UB4N225MHGXLUCQGscope=Test.profile.Write
 
 new code : 1000.f04057b768df558509ad399157220b94.a94993fceb2673694c0a65f3dd49bf85
+1000.524a1528c9cf153f1e39217ba0aec1f2.a9401132db52f8a952e754988dc0ad76
 
 - creating access token
 

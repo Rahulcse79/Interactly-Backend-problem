@@ -8,7 +8,7 @@ const port = 4000;
 
 const zoho_headers = {
   Authorization:
-    "Bearer 1000.1eac4f69431a27fc06e2c14f289354b5.d151f04c252a01e6d9b058965d85cfce",
+    "Bearer 1000.76269cc2bc36c71d57c3cd0adbe0a9a3.7ff3a069c482a5a5fdb717974cd6feaf",
   "Content-Type": "application/json",
 };
 
@@ -71,10 +71,8 @@ app.post("/createContact", async (req, res) => {
       );
 
       const contactId = await result.insertId;
-
-      return res
-        .status(200)
-        .json({ message: "Contact created in DATABASE", contactId });
+      
+      return res.status(200).json({ message: "Contact created in DATABASE", contactId });
     } else {
       return res.status(400).json({ message: "Invalid data_store parameter" });
     }
